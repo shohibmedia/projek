@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.shohibmedia.shconverter" 
+    versionCode = "10"
+    version     = "1.2.5" >
+ 
+  <!-- versionCode is optional and Android only -->
+ 
+  <name>Konversi Lengkap</name>
+ <platform name="android">
+ 	<icon src="images/ldpi.jpg" density="ldpi"/>
+ 	<icon src="images/mdpi.jpg" density="mdpi"/>
+ </platform>
+
+ <splash src="images/splash/ldpi.png" platform="android" qualifier="ldpi"/>
+ <splash src="images/splash/mdpi.png" platform="android" qualifier="mdpi"/>
+ 
+  <description>
+      Konverter untuk menentukan jarak,berat,massa,area dengan cepat den efisien, cocok untuk para siswa saat pelajaran matematika,fisika,atau yang menyangkut hitung menghitung
+  </description>
+ 
+  <author href="https://shohib-media.blogspot.com" email="shohibulhary@gmail.com">
+      Shohib Media
+  </author>
+ 
+</widget>
