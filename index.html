@@ -1,908 +1,465 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="css/onsenui.min.css">
-	<link rel="stylesheet" type="text/css" href="css/onsen-css-components.min.css">
-	<script src="js/onsenui.min.js"></script>
-	<script src="js/konversi.js"></script>
-	<title>Konversi Lengkap</title>
+  <link rel="stylesheet" type="text/css" href="css/onsenui.min.css">
+  <link rel="stylesheet" type="text/css" href="css/onsen-css-components.min.css">
+  <script src="js/onsenui.min.js"></script>
+  <script src="phonegap.js"></script>
+  <title>Lagu Indonesia</title>
 
-	<style>
-		ons-list-title {
-			color: #FFF;
-		}
-	</style>
+    <style>
+      .profile-pic {
+        width: 100px;
+        background-color: #ccc;
+        margin: 20px auto 10px;
+        border: 1px solid #999;
+        border-radius: 4px;
+      }
+
+      .profile-pic > img {
+        display: block;
+        max-width: 100%;
+      }
+
+      ons-list-item {
+        color: #444;
+      }
+    </style>
+    <script>
+      function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, true);
+      }
+      function exitFromApp() {
+        if(confirm("Apakah YAkin Ingin Keluar ?")){
+          navigator.app.exitApp();
+        }
+      }
+    </script>
 </head>
-
 <body>
-	<ons-splitter>
-		<ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
-			<ons-page>
-        		<ons-list-title>Konversi Lengkap</ons-list-title>
-				<ons-list>
-					<ons-list-item onclick="fn.load('jarak.html')" tappable>
-						<i class="zmdi zmdi-arrow-missed"></i>&nbsp Jarak
-					</ons-list-item>
-					<ons-list-item onclick="fn.load('massa.html')" tappable>
-						<i class="zmdi zmdi-cocktail"></i>&nbsp Massa
-					</ons-list-item>
-					<ons-list-item onclick="fn.load('kecepatan.html')" tappable>
-						<i class="zmdi zmdi-car"></i>&nbsp Kecepatan
-					</ons-list-item>
-					<ons-list-item onclick="fn.load('tentang.html')" tappable>
-						<i class="zmdi zmdi-alert-circle-o"></i>&nbsp Tentang Aplikasi
-					</ons-list-item>
-				</ons-page>
-			</ons-splitter-side>
-			<ons-splitter-content id="content" page="jarak.html"></ons-splitter-content>
-		</ons-splitter>
-
-		<template id="jarak.html">
-			<ons-page>
-				<ons-toolbar>
-					<div class="left">
-						<ons-toolbar-button onclick="fn.open()">
-							<ons-icon icon="md-menu"></ons-icon>
-						</ons-toolbar-button>
-					</div>
-					<div class="center">
-						Ukur Jarak
-					</div>
-				</ons-toolbar>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Feet
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Feet" oninput="lengthConverter(this.value)" onchange="lengthConverter(this.value)"></ons-input>
-											<p>Ly : <span id="ly"></span></p>
-											<p>Dm : <span id="dm"></span></p>
-											<p>Mm : <span id="mm"></span></p>
-											<p>M : <span id="m"></span></p>
-											<p>In : <span id="in"></span></p>
-											<p>Cm : <span id="cm"></span></p>
-											<p>Yd : <span id="yd"></span></p>
-											<p>Km : <span id="km"></span></p>
-											<p>Mil : <span id="mi"></span></p>
-											<p>Mil Laut : <span id="nmi"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Meter
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Feet" oninput="lengthConverterM(this.value)" onchange="lengthConverterM(this.value)"></ons-input>
-
-											  <p>Mm : <span id="mmM"></span></p>
-				                              <p>Cm : <span id="cmM"></span></p>
-				                              <p>Dm : <span id="dmM"></span></p>
-											  <p>Ly : <span id="lyM"></span></p>
-											  <p>Ft : <span id="ftM"></span></p>
-				                              <p>In : <span id="inM"></span></p>
-				                              <p>Yd : <span id="ydM"></span></p>
-				                              <p>Km : <span id="kmM"></span></p>
-				                              <p>Mil : <span id="miM"></span></p>
-				                              <p>Mil laut : <span id="nmiM"></span></p>
-
-
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Centimeter
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Centimeter" oninput="lengthConverterC(this.value)" onchange="lengthConverterC(this.value)"></ons-input>
-
-											  <p>Mm : <span id="mmC"></span></p>
-				                              <p>M : <span id="mC"></span></p>
-				                              <p>Dm : <span id="dmC"></span></p>
-											  <p>Ly : <span id="lyC"></span></p>
-											  <p>Ft : <span id="ftC"></span></p>
-				                              <p>In : <span id="inC"></span></p>
-				                              <p>Yd : <span id="ydC"></span></p>
-				                              <p>Km : <span id="kmC"></span></p>
-				                              <p>Mil : <span id="miC"></span></p>
-				                              <p>Mil laut : <span id="nmiC"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Inchi
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Inchi" oninput="lengthConverterI(this.value)" onchange="lengthConverterI(this.value)"></ons-input>
-
-											  <p>Mm : <span id="mmI"></span></p>
-				                              <p>Cm : <span id="cmI"></span></p>
-				                              <p>M : <span id="mI"></span></p>
-				                              <p>Dm : <span id="dmI"></span></p>
-											  <p>Ly : <span id="lyI"></span></p>
-											  <p>Ft : <span id="ftI"></span></p>
-				                              <p>Yd : <span id="ydI"></span></p>
-				                              <p>Km : <span id="kmI"></span></p>
-				                              <p>Mil : <span id="miI"></span></p>
-				                              <p>Mil laut : <span id="nmiI"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Milimeter
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Milimeter" oninput="lengthConverterMm(this.value)" onchange="lengthConverterMm(this.value)"></ons-input>
-
-											  <p>In : <span id="inMm"></span></p>
-				                              <p>Cm : <span id="cmMm"></span></p>
-				                              <p>M : <span id="mMm"></span></p>
-				                              <p>Dm : <span id="dmMm"></span></p>
-											  <p>Ly : <span id="lyMm"></span></p>
-											  <p>Ft : <span id="ftMm"></span></p>
-				                              <p>Yd : <span id="ydMm"></span></p>
-				                              <p>Km : <span id="kmMm"></span></p>
-				                              <p>Mil : <span id="miMm"></span></p>
-				                              <p>Mil laut : <span id="nmiMm"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Desimeter
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Desimeter" oninput="lengthConverterD(this.value)" onchange="lengthConverterD(this.value)"></ons-input>
-
-											  <p>In : <span id="inD"></span></p>
-				                              <p>Cm : <span id="cmD"></span></p>
-				                              <p>M : <span id="mD"></span></p>
-				                              <p>Mm : <span id="mmD"></span></p>
-											  <p>Ly : <span id="lyD"></span></p>
-											  <p>Ft : <span id="ftD"></span></p>
-				                              <p>Yd : <span id="ydD"></span></p>
-				                              <p>Km : <span id="kmD"></span></p>
-				                              <p>Mil : <span id="miD"></span></p>
-				                              <p>Mil laut : <span id="nmiD"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Tahun Cahaya
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Ly" oninput="lengthConverterL(this.value)" onchange="lengthConverterL(this.value)"></ons-input>
-
-											  <p>In : <span id="inL"></span></p>
-				                              <p>Cm : <span id="cmL"></span></p>
-				                              <p>M : <span id="mL"></span></p>
-				                              <p>Mm : <span id="mmL"></span></p>
-											  <p>Dm : <span id="dmL"></span></p>
-											  <p>Ft : <span id="ftL"></span></p>
-				                              <p>Yd : <span id="ydL"></span></p>
-				                              <p>Km : <span id="kmL"></span></p>
-				                              <p>Mil : <span id="miL"></span></p>
-				                              <p>Mil laut : <span id="nmiL"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Yard
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Yard" oninput="lengthConverterY(this.value)" onchange="lengthConverterY(this.value)"></ons-input>
-
-											  <p>In : <span id="inY"></span></p>
-				                              <p>Cm : <span id="cmY"></span></p>
-				                              <p>M : <span id="mY"></span></p>
-				                              <p>Mm : <span id="mmY"></span></p>
-											  <p>Dm : <span id="dmY"></span></p>
-											  <p>Ft : <span id="ftY"></span></p>
-				                              <p>Ly : <span id="lyY"></span></p>
-				                              <p>Km : <span id="kmY"></span></p>
-				                              <p>Mil : <span id="miY"></span></p>
-				                              <p>Mil laut : <span id="nmiY"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Kilometer
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Kilometer" oninput="lengthConverterK(this.value)" onchange="lengthConverterK(this.value)"></ons-input>
-
-											  <p>In : <span id="inK"></span></p>
-				                              <p>Cm : <span id="cmK"></span></p>
-				                              <p>M : <span id="mK"></span></p>
-				                              <p>Mm : <span id="mmK"></span></p>
-											  <p>Dm : <span id="dmK"></span></p>
-											  <p>Ft : <span id="ftK"></span></p>
-				                              <p>Ly : <span id="lyK"></span></p>
-				                              <p>Yd : <span id="ydK"></span></p>
-				                              <p>Mil : <span id="miK"></span></p>
-				                              <p>Mil laut : <span id="nmiK"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Mil
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Mil" oninput="lengthConverterMi(this.value)" onchange="lengthConverterMi(this.value)"></ons-input>
-
-											  <p>In : <span id="inMi"></span></p>
-				                              <p>Cm : <span id="cmMi"></span></p>
-				                              <p>M : <span id="mMi"></span></p>
-				                              <p>Mm : <span id="mmMi"></span></p>
-											  <p>Dm : <span id="dmMi"></span></p>
-											  <p>Ft : <span id="ftMi"></span></p>
-				                              <p>Ly : <span id="lyMi"></span></p>
-				                              <p>Yd : <span id="ydMi"></span></p>
-				                              <p>Km : <span id="kmMi"></span></p>
-				                              <p>Mil laut : <span id="nmiMi"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Mil Laut
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Mil laut" oninput="lengthConverterN(this.value)" onchange="lengthConverterN(this.value)"></ons-input>
-
-											  <p>In : <span id="inN"></span></p>
-				                              <p>Cm : <span id="cmN"></span></p>
-				                              <p>M : <span id="mN"></span></p>
-				                              <p>Mm : <span id="mmN"></span></p>
-											  <p>Dm : <span id="dmN"></span></p>
-											  <p>Ft : <span id="ftN"></span></p>
-				                              <p>Ly : <span id="lyN"></span></p>
-				                              <p>Yd : <span id="ydN"></span></p>
-				                              <p>Km : <span id="kmN"></span></p>
-				                              <p>Mil : <span id="miN"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-			</ons-page>
-		</template>
-
-		<template id="massa.html">
-			<ons-page>
-				<ons-toolbar>
-					<div class="left">
-						<ons-toolbar-button onclick="fn.open()">
-							<ons-icon icon="md-menu"></ons-icon>
-						</ons-toolbar-button>
-					</div>
-					<div class="center">
-						Ukur Massa
-					</div>
-				</ons-toolbar>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Miligram (mg)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="mg" oninput="weightConverterMg(this.value)" onchange="weightConverterMg(this.value)"></ons-input>
-
-											<p>G : <span id="gMg"></span></p>
-				                            <p>Gr : <span id="grMg"></span></p>
-				                            <p>U : <span id="uMg"></span></p>
-				                            <p>Oz : <span id="ozMg"></span></p>
-				                            <p>Kg : <span id="kgMg"></span></p>
-				                            <p>Ct : <span id="ctMg"></span></p>
-				                            <p>Lb : <span id="lbMg"></span></p>
-				                            <p>Ton: <span id="tonMg"></span></p>
-				                            <p>T : <span id="tMg"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Gram (g)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="g" oninput="weightConverterG(this.value)" onchange="weightConverterG(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgG"></span></p>
-				                            <p>Gr : <span id="grG"></span></p>
-				                            <p>U : <span id="uG"></span></p>
-				                            <p>Oz : <span id="ozG"></span></p>
-				                            <p>Kg : <span id="kgG"></span></p>
-				                            <p>Ct : <span id="ctG"></span></p>
-				                            <p>Lb : <span id="lbG"></span></p>
-				                            <p>Ton : <span id="tonG"></span></p>
-				                            <p>T : <span id="tG"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Grain (gr)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="gr" oninput="weightConverterGr(this.value)" onchange="weightConverterGr(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgGr"></span></p>
-				                            <p>G : <span id="gGr"></span></p>
-				                            <p>U : <span id="uGr"></span></p>
-				                            <p>Oz : <span id="ozGr"></span></p>
-				                            <p>Kg : <span id="kgGr"></span></p>
-				                            <p>Ct : <span id="ctGr"></span></p>
-				                            <p>Lb : <span id="lbGr"></span></p>
-				                            <p>Ton : <span id="tonGr"></span></p>
-				                            <p>T : <span id="tGr"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Massa Atom (u)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="u" oninput="weightConverterU(this.value)" onchange="weightConverterU(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgU"></span></p>
-				                            <p>G : <span id="gU"></span></p>
-				                            <p>Gr : <span id="grU"></span></p>
-				                            <p>Oz : <span id="ozU"></span></p>
-				                            <p>Kg : <span id="kgU"></span></p>
-				                            <p>Ct : <span id="ctU"></span></p>
-				                            <p>Lb : <span id="lbU"></span></p>
-				                            <p>Ton : <span id="tonU"></span></p>
-				                            <p>T : <span id="tU"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Ons (oz)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="oz" oninput="weightConverterOz(this.value)" onchange="weightConverterOz(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgOz"></span></p>
-				                            <p>G : <span id="gOz"></span></p>
-				                            <p>Gr : <span id="grOz"></span></p>
-				                            <p>U : <span id="uOz"></span></p>
-				                            <p>Kg : <span id="kgOz"></span></p>
-				                            <p>Ct : <span id="ctOz"></span></p>
-				                            <p>Lb : <span id="lbOz"></span></p>
-				                            <p>Ton : <span id="tonOz"></span></p>
-				                            <p>T : <span id="tOz"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Kilogram (kg)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="kg" oninput="weightConverterKg(this.value)" onchange="weightConverterKg(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgKg"></span></p>
-				                            <p>G : <span id="gKg"></span></p>
-				                            <p>Gr : <span id="grKg"></span></p>
-				                            <p>U : <span id="uKg"></span></p>
-				                            <p>Oz : <span id="ozKg"></span></p>
-				                            <p>Ct : <span id="ctKg"></span></p>
-				                            <p>Lb : <span id="lbKg"></span></p>
-				                            <p>Ton : <span id="tonKg"></span></p>
-				                            <p>T : <span id="tKg"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Karat (Ct)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="ct" oninput="weightConverterCt(this.value)" onchange="weightConverterCt(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgCt"></span></p>
-				                            <p>G : <span id="gCt"></span></p>
-				                            <p>Gr : <span id="grCt"></span></p>
-				                            <p>U : <span id="uCt"></span></p>
-				                            <p>Oz : <span id="ozCt"></span></p>
-				                            <p>Kg : <span id="kgCt"></span></p>
-				                            <p>Lb : <span id="lbCt"></span></p>
-				                            <p>Ton : <span id="tonCt"></span></p>
-				                            <p>T : <span id="tCt"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Pon (lb)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="lb" oninput="weightConverterLb(this.value)" onchange="weightConverterLb(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgLb"></span></p>
-				                            <p>G : <span id="gLb"></span></p>
-				                            <p>Gr : <span id="grLb"></span></p>
-				                            <p>U : <span id="uLb"></span></p>
-				                            <p>Oz : <span id="ozLb"></span></p>
-				                            <p>Kg : <span id="kgLb"></span></p>
-				                            <p>Ct : <span id="ctLb"></span></p>
-				                            <p>Ton : <span id="tonLb"></span></p>
-				                            <p>T : <span id="tLb"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Ton Panjang (ton)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="ton" oninput="weightConverterT(this.value)" onchange="weightConverterT(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgT"></span></p>
-				                            <p>G : <span id="gT"></span></p>
-				                            <p>Gr : <span id="grT"></span></p>
-				                            <p>U : <span id="uT"></span></p>
-				                            <p>Oz : <span id="ozT"></span></p>
-				                            <p>Kg : <span id="kgT"></span></p>
-				                            <p>Ct : <span id="ctT"></span></p>
-				                            <p>Lb : <span id="lbT"></span></p>
-				                            <p>T : <span id="tT"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Ton (t)
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="t" oninput="weightConverterTt(this.value)" onchange="weightConverterTt(this.value)"></ons-input>
-
-											<p>Mg : <span id="mgTt"></span></p>
-				                            <p>G : <span id="gTt"></span></p>
-				                            <p>Gr : <span id="grTt"></span></p>
-				                            <p>U : <span id="uTt"></span></p>
-				                            <p>Oz : <span id="ozTt"></span></p>
-				                            <p>Kg : <span id="kgTt"></span></p>
-				                            <p>Lb : <span id="lbTt"></span></p>
-				                            <p>Ct : <span id="ctTt"></span></p>
-				                            <p>Ton : <span id="tonTt"></span></p>
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				
-			</ons-page>
-		</template>
-
-		<template id="kecepatan.html">
-			<ons-page>
-				<ons-toolbar>
-					<div class="left">
-						<ons-toolbar-button onclick="fn.open()">
-							<ons-icon icon="md-menu"></ons-icon>
-						</ons-toolbar-button>
-					</div>
-					<div class="center">
-						Ukur Kecepatan
-					</div>
-				</ons-toolbar>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Meter/detik
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="m/s" oninput="speedConverterMs(this.value)" onchange="speedConverterMs(this.value)"></ons-input>
-
-											<p>M/min  : <span id="mmMs"></span></p>
-                              				<p>Km/min : <span id="kmMs"></span></p>
-                              				<p>Km/h   : <span id="khMs"></span></p>
-                              				<p>Feet/s : <span id="fsMs"></span></p>
-                              				<p>Knot   : <span id="knMs"></span></p>
-                              				<p>Mach   : <span id="maMs"></span></p>
-                              				<p>Mph    : <span id="mpMs"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Meter/menit
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="m/min" oninput="speedConverterMm(this.value)" onchange="speedConverterMm(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msMm"></span></p>
-                              				<p>Km/min : <span id="kmMm"></span></p>
-                              				<p>Km/h   : <span id="khMm"></span></p>
-                              				<p>Feet/s : <span id="fsMm"></span></p>
-                              				<p>Knot   : <span id="knMm"></span></p>
-                              				<p>Mach   : <span id="maMm"></span></p>
-                              				<p>Mph    : <span id="mpMm"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Kilometer/jam
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="km/h" oninput="speedConverterKh(this.value)" onchange="speedConverterKh(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msKh"></span></p>
-                              				<p>M/min : <span id="mmKh"></span></p>
-                              				<p>Km/h   : <span id="kmKh"></span></p>
-                              				<p>Feet/s : <span id="fsKh"></span></p>
-                              				<p>Knot   : <span id="knKh"></span></p>
-                              				<p>Mach   : <span id="maKh"></span></p>
-                              				<p>Mph    : <span id="mpKh"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Kilometer/menit
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="km/min" oninput="speedConverterKm(this.value)" onchange="speedConverterKm(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msKm"></span></p>
-                              				<p>M/min : <span id="mmKm"></span></p>
-                              				<p>Km/h   : <span id="khKm"></span></p>
-                              				<p>Feet/s : <span id="fsKm"></span></p>
-                              				<p>Knot   : <span id="knKm"></span></p>
-                              				<p>Mach   : <span id="maKm"></span></p>
-                              				<p>Mph    : <span id="mpKm"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Kaki/detik
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="feet/s" oninput="speedConverterFs(this.value)" onchange="speedConverterFs(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msFs"></span></p>
-                              				<p>M/min : <span id="mmFs"></span></p>
-                              				<p>Km/min : <span id="kmFs"></span></p>
-                              				<p>Km/h   : <span id="khFs"></span></p>
-                              				<p>Knot   : <span id="knFs"></span></p>
-                              				<p>Mach   : <span id="maFs"></span></p>
-                              				<p>Mph    : <span id="mpFs"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Knot
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="kn" oninput="speedConverterKn(this.value)" onchange="speedConverterKn(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msKn"></span></p>
-                              				<p>M/min : <span id="mmKn"></span></p>
-                              				<p>Feet/s   : <span id="fsKn"></span></p>
-                              				<p>Km/min : <span id="kmKn"></span></p>
-                              				<p>Km/h   : <span id="khKn"></span></p>
-                              				<p>Mach   : <span id="maKn"></span></p>
-                              				<p>Mph    : <span id="mpKn"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Kecepatan Suara
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="mach" oninput="speedConverterMa(this.value)" onchange="speedConverterMa(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msMa"></span></p>
-                              				<p>M/min : <span id="mmMa"></span></p>
-                              				<p>Feet/s   : <span id="fsMa"></span></p>
-                              				<p>Km/min : <span id="kmMa"></span></p>
-                              				<p>Km/h   : <span id="khMa"></span></p>
-                              				<p>Knot   : <span id="knMa"></span></p>
-                              				<p>Mph    : <span id="mpMa"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__content card--material__content">
-							<ons-list-item expandable>
-								Mil per jam
-								<div class="expandable-content">
-									<div style="text-align: left;">
-										<p>
-											<ons-input type="number" id="Display" modifier="underbar" placeholder="Mph" oninput="speedConverterMp(this.value)" onchange="speedConverterMp(this.value)"></ons-input>
-
-											<p>M/s  : <span id="msMp"></span></p>
-                              				<p>M/min : <span id="mmMp"></span></p>
-                              				<p>Feet/s   : <span id="fsMp"></span></p>
-                              				<p>Km/min : <span id="kmMp"></span></p>
-                              				<p>Km/h   : <span id="khMp"></span></p>
-                              				<p>Knot   : <span id="knMp"></span></p>
-                              				<p>Mach    : <span id="maMp"></span></p>
-
-										</p>
-									</div>
-								</div>
-							</ons-list-item>
-						</div>
-					</div>
-				</div>
-			</ons-page>
-		</template>
-
-		<template id="tentang.html">
-			<ons-page>
-				<ons-toolbar>
-					<div class="left">
-						<ons-toolbar-button onclick="fn.open()">
-							<ons-icon icon="md-menu"></ons-icon>
-						</ons-toolbar-button>
-					</div>
-					<div class="center">
-						Tentang Aplikasi
-					</div>
-				</ons-toolbar>
-				<div class="height:200px; padding:1px 0 0 0;">
-					<div class="card card--material">
-						<div class="card__title card--material__title">Konversi Lengkap v1.2.6</div>
-						<div class="card__content card--material__content">Aplikasi dibuat dengan onsenUI , Aplikasi ini bertujuan untuk membantu dalam melakukan pengukuran, baik massa,jarak,kecepatan. dll</div><br>
-						<hr>
-						Kirim kritik dan saran ke :<br>
-						Email :<br>
-						<b>www.shohibulhary@gmail.com</b> <br><hr>
-						Blog :<br>
-						www.shohib-media.blogspot.com
-					</div>
-				</div>
-			</ons-page>
-		</template>
-
-		<script>
-			window.fn = {};
-			window.fn.open = function() {
-				var menu = document.getElementById('menu');
-				menu.open();
-			};
-
-			window.fn.load = function(page) {
-				var content = document.getElementById('content');
-				var menu = document.getElementById('menu');
-				content.load(page)
-				.then(menu.close.bind(menu));
-			};
-
-
-		</script>
-	</body>
-	</html>
+  <ons-splitter>
+    <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+      <ons-page>
+        <div class="profile-pic">
+          <img src="images/flag.png" sizes="10px">
+        </div>
+        <ons-list-title>Lagu Indonesia</ons-list-title>
+        <ons-list>
+          <ons-list-item onclick="fn.load('home.html')" tappable>
+            <i class="zmdi zmdi-home zmdi-hc-fw"></i>&nbsp
+            Home
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('nasional.html')" tappable>
+            <i class="zmdi zmdi-play-circle"></i>&nbsp
+            Lagu Nasional
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('daerah.html')" tappable>
+            <i class="zmdi zmdi-play-circle"></i>&nbsp
+            Lagu Daerah
+          </ons-list-item>
+          <ons-list-item onclick="fn.load('about.html')" tappable>
+            <i class="zmdi zmdi-info"></i>&nbsp
+            About
+          </ons-list-item>
+		  <ons-list-item onclick="exitFromApp();" tappable>
+            <i class="md-warning"></i>&nbsp
+            Exit
+          </ons-list-item>
+      </ons-page>
+    </ons-splitter-side>
+    <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+  </ons-splitter>
+
+  <template id="home.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          Home
+        </div>
+      </ons-toolbar><br><br><br><br><br><br><br><br>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title">Selamat datang</div>
+          <div class="card__content card--material__content">Aplikasi kumpulan lagu-lagu indonesia</div><br>
+
+        </div>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="nasional.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          Lagu Nasional
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title" onclick="fn.load('indonesiraya.html')">Lagu Indonesia Raya</div>
+        </div>
+      </div>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title" onclick="fn.load('tanahairku.html')">Lagu Tanah Airku</div>
+        </div>
+      </div>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title" onclick="fn.load('benderaku.html')">Lagu Berkibarlah Benderaku</div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="daerah.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          Lagu Daerah
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title" onclick="fn.load('suwe.html')">Lagu Suwe Ora Jamu</div>
+        </div>
+      </div>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title" onclick="fn.load('pisang.html')">Lagu Ampar-Ampar Pisang</div>
+        </div>
+      </div>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title" onclick="fn.load('ambon.html')">Lagu Ambon Manise</div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+
+  </template>
+  <template id="about.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-toolbar-button onclick="fn.open()">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+        <div class="center">
+          About
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__title">Lagu Indonesia v1.0</div>
+          <div class="card__content card--material__content">Respon Mobile Programming<br>16.230.0022</div><br>
+
+        </div>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="indonesiraya.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button onclick="fn.load('nasional.html')">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-back-button>
+        </div>
+        <div class="center">
+          Indonesia Raya
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__content">
+            Indonesia tanah airku<br>
+            Tanah tumpah darahku<br>
+            Disanalah aku berdiri<br>
+            Jadi pandu ibuku<br>
+            Indonesia kebangsaanku<br>
+            Bangsa dan Tanah Airku<br>
+            Marilah kita berseru<br>
+            Indonesia bersatu<br><br>
+
+            Hiduplah tanahku<br>
+            Hiduplah negriku<br>
+            Bangsaku Rakyatku semuanya<br>
+            Bangunlah jiwanya<br>
+            Bangunlah badannya<br>
+            Untuk Indonesia Raya<br>
+            Indonesia Raya<br>
+            Merdeka Merdeka<br>
+            Tanahku negriku yang kucinta<br><br>
+
+            Indonesia Raya<br>
+            Merdeka Merdeka<br>
+            Hiduplah Indonesia Raya<br><br>
+
+            Indonesia Raya<br>
+            Merdeka Merdeka<br>
+            Tanahku negriku yang kucinta<br><br>
+
+            Indonesia Raya<br>
+            Merdeka Merdeka<br>
+            Hiduplah Indonesia Raya<br></div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+  <template id="tanahairku.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button onclick="fn.load('nasional.html')">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-back-button>
+        </div>
+        <div class="center">
+          Indonesia Tanah Airku
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__content">
+              Tanah airku tidak kulupakan<br>
+              Kan terkenang selama hidupku<br>
+              Biarpun saya pergi jauh<br>
+              Tidak kan hilang dari kalbu<br>
+              Tanah ku yang kucintai<br>
+              Engkau kuhargai<br><br>
+
+              Walaupun banyak negri kujalani<br>
+              Yang masyhur permai dikata orang<br>
+              Tetapi kampung dan rumahku<br>
+              Di sanalah kurasa senang<br>
+              Tanahku tak kulupakan<br>
+              Engkau kubanggakan<br><br>
+            </div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+<template id="benderaku.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button onclick="fn.load('nasional.html')">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-back-button>
+        </div>
+        <div class="center">
+          Berkibarlah Benderaku
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__content">
+            Berkibarlah benderaku<br>
+            Lambang suci gagah perwira<br>
+            Di seluruh pantai Indonesia<br>
+            Kau tetap pujaan bangsa<br><br>
+
+            Siapa berani menurunkan engkau<br>
+            Serentak rakyatmu membela<br>
+            Sang merah putih yang perwira<br>
+            Berkibarlah Slama-lamanya<br><br>
+
+            Kami rakyat Indonesia<br>
+            Bersedia setiap masa<br>
+            Mencurahkan segenap tenaga<br>
+            Supaya kau tetap cemerlang<br><br>
+
+            Tak goyang jiwaku menahan rintangan<br>
+            Tak gentar rakyatmu berkorban<br>
+            Sang merah putih yang perwira<br>
+            Berkibarkah Slama-lamanya<br>
+            </div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+  <template id="suwe.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button onclick="fn.load('daerah.html')">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-back-button>
+        </div>
+        <div class="center">
+          Suwe Ora Jamu
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__content">
+            Suwe ora jamu<br>
+            Jamu godhong telo<br>
+            Suwe ora ketemu<br>
+            Temu pisan atine gelo<br><br>
+
+            Suwe ora jamu<br>
+            Jamu sogo thunteng<br>
+            Suwe ora ketemu<br>
+            Temu pisan atine seneng<br><br>
+
+
+            Suwe ora jamu<br>
+            amu godhong bunder<br>
+            Suwe ora ketemu<br>
+            Temu pisan tambah pinter<br>
+            </div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+    <template id="pisang.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button onclick="fn.load('nasional.html')">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-back-button>
+        </div>
+        <div class="center">
+          Ampar-ampar Pisang
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__content">
+            Ampar ampar pisang<br>
+            Pisangku balum masak<br>
+            Masak bigi di hurung bari-bari<br>
+            Masak bigi di hurung bari-bari<br><br>
+
+            Manggalepak manggalepok<br>
+            Patah kayu bengkok<br>
+            Bengkok dimakan api<br>
+            apinya cang curupan<br><br>
+
+            Nang mana batis kutung<br>
+            Dikitipi dawang (2x)<br><br>
+
+            Ampar ampar pisang<br>
+            Pisangku balum masak<br>
+            Masak bigi di hurung bari-bari<br>
+            Masak bigi di hurung bari-bari<br>
+            </div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+    <template id="ambon.html">
+    <ons-page>
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button onclick="fn.load('nasional.html')">
+            <ons-icon icon="md-menu"></ons-icon>
+          </ons-back-button>
+        </div>
+        <div class="center">
+          Ambon Manise
+        </div>
+      </ons-toolbar>
+      <div class="height:200px; padding:1px 0 0 0;">
+        <div class="card card--material">
+          <div class="card__title card--material__content">
+            Ditanah orang baru<br>
+            Beta menyasale<br><br>
+
+            Mengapa Beta mau<br>
+            Beta menyasale<br><br>
+
+
+             
+            Mengapa Beta mau<br>
+            Buang diri begini<br>
+            Jauh dari pangku Mama<br>
+            Sungguh asing lawang ee <br><br>
+
+            Sioh apa tempo Beta pulang<br>
+            Ke Ambon Ee<br>
+            Laut yang lebar<br>
+            Gunung tapele<br><br>
+
+            Mari Mama gendong Beta<br>
+            Lah bawa pulang dolo ee<br>
+            Ketanah yang kucinta<br>
+            Ambon Manise....<br>
+
+            </div>
+        </div>
+      </div>
+    </ons-page>
+  </template>
+  <template id="exit.html">
+    <ons-alert-dialog id="my-alert-dialog" modifier="rowfooter">
+    <div class="alert-dialog-title">Alert</div>
+    <div class="alert-dialog-content">
+      This dialog was created from a template
+    </div>
+    <div class="alert-dialog-footer">
+      <ons-alert-dialog-button onclick="hideAlertDialog()">Cancel</ons-alert-dialog-button>
+      <ons-alert-dialog-button onclick="hideAlertDialog()">OK</ons-alert-dialog-button>
+    </div>
+  </ons-alert-dialog>
+  </template>
+  <script>
+    window.fn = {};
+    window.fn.open = function() {
+      var menu = document.getElementById('menu');
+      menu.open();
+    };
+
+    window.fn.load = function(page) {
+      var content = document.getElementById('content');
+      var menu = document.getElementById('menu');
+      content.load(page)
+      .then(menu.close.bind(menu));
+    };
+
+    var login = function() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      if (username === 'bob' && password === 'secret') {
+        ons.notification.alert('Congratulations!');
+      } else {
+        ons.notification.alert('Incorrect username or password.');
+      }
+    };
+
+	var createAlertDialog = function() {
+  var dialog = document.getElementById('my-alert-dialog');
+
+  if (dialog) {
+    dialog.show();
+  } else {
+    ons.createElement('exit.html', { append: true })
+      .then(function(dialog) {
+        dialog.show();
+      });
+  }
+};
+  </script>
+</body>
+</html>
